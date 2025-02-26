@@ -20,17 +20,22 @@ int main() {
         printf("array elements:[%d]\n",arr[i]);
     }
 
+    int LessThan = 0,GreaterThan = 0,EqualTo = 0;
+
     //count less than
      for(int i = 0;i < n;i++) {
-        
-        int count = 0;
-
-        if(arr[n] < 0) {
-           
-            count++;
-            
+        if(arr[i] < 0) {
+           LessThan++;
+        } else if (arr[i] > 0) {
+            GreaterThan++;
+        } else {
+            EqualTo++;
         }
-        printf("numbers less than zero :%d",count);
     }
 
+//output the  result
+printf("less than zero:[%d]\n",LessThan);
+printf("greater than zero:[%d]\n",GreaterThan);
+printf("equal to zero:[%d]\n",EqualTo);
 
+}
