@@ -1,13 +1,10 @@
-/*4. Write a C program to sort the first half of the array in ascending order and the second half in
- descending order.*/
-
 #include<stdio.h>
 
-//descending sort using bubble sort
-void descending_sort(int arr[],int size) {
-    for (int i = 1; i < size; i++) {           
-        for (int j = 0; j < size - i; j++) {   
-            if (arr[j+1] > arr[j]) {         
+// Descending sort using bubble sort
+void descending_sort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (arr[j] < arr[j + 1]) {
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
@@ -16,11 +13,10 @@ void descending_sort(int arr[],int size) {
     }
 }
 
-
-    //asending sort using bubble sort
-void asending_sort(int arr[], int size) {
-    for (int i = 1; i < size; i++) {           
-        for (int j = 0; j < size - i; j++) {   
+// Ascending sort using bubble sort
+void ascending_sort(int arr[], int size) {
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
@@ -30,49 +26,39 @@ void asending_sort(int arr[], int size) {
     }
 }
 
-//print array
-void print_array(int arr[],int size) {
-    for(int i = 0; i < size ; i++) {
-        printf("%d",arr[i]);
+// Print array
+void print_array(int arr[], int size) {
+    for (int i = 0; i < size; i++) {
+        printf("%d ", arr[i]);
     }
     printf("\n");
 }
 
 int main() {
+    int arr[100], size;
 
-    int arr[5],size;
+    printf("Enter how many elements to enter: ");
+    scanf("%d", &size);
 
-    //user defined for size of array
-    printf("enter how many elements to enter:");
-    scanf("%d",&size);
-
-
-    // enter elements
     for (int i = 0; i < size; i++) {
-        printf("enter array elements:");
-        scanf("%d",&arr[i]);
+        printf("Enter array element %d: ", i + 1);
+        scanf("%d", &arr[i]);
     }
 
-    // print original array
-    for (int i = 0; i < size; i++) {
-        printf("original array:[%d]\n", arr[i]);
-    }
+    printf("Original array: ");
+    print_array(arr, size);
 
-    //mid point
     int mid_point = size / 2;
-    descending_sort(arr,mid_point);
+    ascending_sort(arr, mid_point);
+    descending_sort(arr + mid_point, size - mid_point);
 
-    //second half
-    asending_sort(arr + mid_point,size - mid_point);
-
-
-    //print the sorted array
-    printf("Sorted array: ");
+    printf("First half sorted in ascending order: ");
+    print_array(arr, mid_point);
+    printf("Second half sorted in descending order: ");
+    print_array(arr + mid_point, size - mid_point);
+    
+    printf("Final sorted array: ");
     print_array(arr, size);
 
     return 0;
-
 }
-
-
-
